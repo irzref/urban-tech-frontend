@@ -1,11 +1,10 @@
 const path = require('path');
-const webpack = require("webpack");
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   entry: {
     index: [
-      "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000",
       "./src/index.js"
     ]
   },
@@ -13,7 +12,6 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  //plugins: [new webpack.HotModuleReplacementPlugin()],  
   module: {
     rules: [
       {
@@ -30,5 +28,17 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  watch: true,
+  plugins: [
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3000,
+      files: [
+        "./dist/*.html",
+        "./dist/*.css"
+      ],
+      server: { baseDir: ['dist'] }
+    })
+  ]
 };
