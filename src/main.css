@@ -1,5 +1,9 @@
+.row {
+    display: flex;
+}
+
 #map {
-    width: 100%;
+    /* width: 50%; */
     height: 100%;
 }
 
@@ -7,3 +11,4 @@ img {
     width: 100%;
     height: auto;
 }
+
